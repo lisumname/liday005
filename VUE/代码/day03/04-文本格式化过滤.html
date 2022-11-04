@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../VUEwenjia/vue.js"></script>
+</head>
+<body>
+    <div id="box">
+        <p>{{name | texts}}</p>
+        <p>{{nametwo | nametwo}}</p>
+    </div>
+</body>
+<script>
+     const vm=new Vue({
+        el:'#box',
+        data:{
+            name:'张三sb',
+            nametwo:'小二逼,大二逼'
+        },
+        //定义过滤器把文本里的敏感词替换 需要用到字符串的一个方法 替换 replace 这个只能从前往后找 找第一个 replaceAll可以过滤所有的文本
+        filters:{
+            texts:function(text){
+                return text.replaceAll('sb','**')
+            },
+            nametwo:function(val){
+                //replace方法只会替换掉从开始找的第一个
+                return val.replace('逼','*')
+            }
+        }
+     })
+</script>
+</html>

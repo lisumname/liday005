@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        background-color: wheat;
+    }
+</style>
+
+<body>
+    <div id="box">
+    <child @zishuju="jieshou"></child>
+     
+    <ul>
+        <li>发布内容----发布时间</li>
+        <li v-for="(item,index) in users" :key="item.id">
+         {{item.name}}--{{item.data}}  <a href="#" @click.prevent="defalut(index)">删除</a>
+        </li>
+    </ul>
+    </div>
+</body>
+<template id="publishform">     
+    <div>
+        发布时间: <input type="text" v-model="data"> <br>
+        发布内容: <textarea cols="30" rows="10" v-model="name"></textarea>
+        <button @click="fasong">发布帖子</button>
+    </div>
+</template>
+<script src="../VUEwenjia/vue.js"></script>
+<script>
+    //定义子组件
+    Vue.component('child', {
+        template: '#publishform',
+        data() {
+            return {
+                data:'',
+                name:'',
+            }
+        },
+        methods: {
+            fasong(){
+                let zonghe={
+                    data:this.data,
+                    name:this.name,
+                }
+                this.$emit('zishuju',zonghe),
+                //清空内容
+                this.data='',
+                this.name=''
+            }
+        },
+    })
+    const vm = new Vue({
+        el: '#box',
+        data:{
+            users:[{
+                id:1,name:'张三',data:'2022-10-1'
+            },{
+                id:2,name:'李四',data:'2022-10-10'
+            }]
+        },
+        methods:{
+            jieshou(value){
+                console.log(value);
+                value.id = this.users.length + 1;
+               this.users.unshift(value)
+            },
+            defalut(index){
+                //实现删除功能
+                this.users.splice(index,1)
+            }
+        }
+    })
+</script>
+
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../VUEwenjia/vue.js"></script>
+</head>
+
+<body>
+    <div id="box">
+        <!-- 实现当我打开页面的时候自动获取光标 -->
+        <input type="text" v-color="'blue'" />
+    </div>
+</body>
+<script>
+
+    const vm = new Vue({
+        el: '#box',
+        directives: {
+            color: {
+                bind: function (val, parme1) {
+                    val.style.backgroundColor=parme1.value
+                    // console.log(parme1.value);
+                }
+            }
+        }
+
+    })
+
+
+</script>
+
+</html>

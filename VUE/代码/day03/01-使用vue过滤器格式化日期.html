@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../VUEwenjia/vue.js"></script>
+</head>
+
+<body>
+    <div id="box">
+        <p>
+            当前日期:{{born | Dates}}
+        </p>
+
+        <p>
+            当前日期:{{born | Dates}}
+        </p>
+    </div>
+
+</body>
+<script>
+    //全局过滤器 vue.filter('第一个参数是过滤器的名字',第二个参数是一个函数,函数接受一个参数 value)
+    Vue.filter('Dates', function (value) {
+        //   console.log(value);  这个value就是上边加了竖杠的元素 
+        //谁用了这个过滤器 value 就是谁
+        let year = value.getFullYear();
+        let month = value.getMonth() + 1;
+        let d = value.getDate();
+        let hour = value.getHours();
+        let minute = value.getMinutes();
+        let second = value.getSeconds();
+
+        return year+'-'+month+'-'+d+'-'+hour+':'+minute+':'+second
+    })
+      
+    const vm = new Vue({
+        el: "#box",
+        data: {
+            born: new Date()
+        }
+    })
+</script>
+
+</html>

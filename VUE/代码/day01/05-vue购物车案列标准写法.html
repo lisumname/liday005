@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../VUEwenjia/vue.js"></script>
+</head>
+<body>
+    <div id="box">
+        <!-- 加:号代表动态添加的  意思就是只有在number小于2的时候禁用按钮 -->
+        <button :disabled="number<2" @click="and">-</button>
+        {{number}}
+        <button @click="jia">+</button>
+        <span>价格:{{price}}$</span>
+    </div>
+</body>
+<script>
+    const vm=new Vue({
+        el:"#box",
+        data:{
+            number:1,
+            price:21
+        },
+        methods:{
+            and(){
+                vm.number--;
+               vm.price=vm.number*21
+            },
+            jia(){
+                vm.number++;
+                vm.price=vm.number*21
+            }
+        }
+    })
+</script>
+</html>

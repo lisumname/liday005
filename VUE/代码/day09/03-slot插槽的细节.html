@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="box">
+        <child>
+            <button>按钮1</button>
+            <a href="#">超链接</a>
+            <!-- 这样写 会让一个插槽都有这两个  -->
+        </child>
+
+
+    </div>
+</body>
+<template id="child">
+    <div>
+        <!-- 插槽1 -->
+        <slot></slot>
+        <h1>这个是子组件</h1>
+        <!-- slot插槽符 也叫占位符 -->
+         <!-- 插槽2 -->
+        <slot></slot>
+    </div>
+</template>
+<script src="../VUEwenjia/vue.js"></script>
+<script>
+    //创建子组件
+    Vue.component('child', {
+        template: '#child'
+    })
+    new Vue({
+        el: '#box'
+    })
+</script>
+
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="box">
+        <app></app>
+    </div>
+</body>
+<script src="../VUEwenjia/vue.js"></script>
+<script>
+    //定义student组件
+    const student = Vue.extend({
+        // name:'student',
+        template: `
+        <div>
+            <h2>student组件</h2>
+        </div>`
+    })
+    //定义school组件
+    // school管理student 
+    const school = Vue.extend({
+        // name:'school',
+        template: `
+        <div>
+            <h1>school组件</h1>  
+            <student></student>  
+          </div>      
+            `,
+        components: { student }
+    })
+
+    const hello = Vue.extend({
+        template: `
+        <div>
+            <h1>{{msg}}</h1>  
+          </div>      
+            `,
+        data() {
+            return {
+                msg: '欢迎来到我这里学习'
+            }
+        },
+    })
+    //定义app组件 app是管理所有组件的组件 一人之下万人之上 只低于vm
+    // app管理着school ,hello
+    const app = Vue.extend({
+        template: `  
+        <div>
+        <hello></hello>
+        <school></school>
+        </div>
+        `,
+        components: {
+            school,
+            hello
+        }
+    })
+    new Vue({
+        el: "#box",
+        components: { app }
+    })
+</script>
+
+</html>

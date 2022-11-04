@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../VUEwenjia/vue.js"></script>
+</head>
+
+<body>
+    <div id="box">
+        <!-- <div :style="[color,fontSize]">我是动态添加的属性</div> -->
+        <p :style="color">我是p</p>
+    </div>
+</body>
+<script>
+    const vm = new Vue({
+        el: '#box',
+        data: {
+            color: {
+                color: 'red',
+                fontSize: '30px'
+            },
+            // fontSize: {
+            //     fontSize: '30px'
+            // }
+
+        },
+
+    })
+</script>
+
+</html>

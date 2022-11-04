@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../VUEwenjia/vue.js"></script>
+</head>
+<body>
+    <div id="box">
+        <input type="text" v-color>
+    </div>
+</body>
+<script>
+      const vm =new Vue({
+         el:"#box",
+         //定义局部自定义指令
+         directives:{
+            color:{
+                // bind:function(el){
+                //     // el.focus()
+                //     el.style.backgroundColor='red'  
+                //     //可以实现背景色变色 但实现不了获取光标 
+                //     // 因为 bind 是节点在绑定的时候 还没到界面的时候 就是后台的时候 就触发了
+                        // 含义：节点在绑定的时候就触发
+                // }
+                inserted:function(el){
+                    el.focus()
+                    el.style.backgroundColor='red'  
+                    //可以实现背景色变色 也可以实现获取光标 
+                    // 含义：节点插入文档的时候触发  也就是打开界面的时候 
+                }
+            }
+         }
+      })
+</script>
+</html>

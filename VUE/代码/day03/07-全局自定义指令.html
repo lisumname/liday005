@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../VUEwenjia/vue.js"></script>
+</head>
+<body>
+    <div id="box">
+        <!-- 实现当我打开页面的时候自动获取光标 -->
+      <input type="text" v-focus value="">
+    </div>
+</body>
+<script>
+     //定义全局自定义指令
+    // 第一个参数是指令的名字 第二个参数是一个对象 对象里有一个函数
+    Vue.directive('focus',{
+        //用一个方法inserted 函数里写要执行什么代码
+        inserted:function(el){
+        //给谁绑定了这个指令 el就是谁  在这里写要做什么的代码  focus()是自动回去光标
+        el.focus(); 
+        el.value='李四'
+       }
+    });
+    //全局的定义 必须在new Vue的上边 顺序不能乱
+    const vm=new Vue({
+        el:'#box',
+       
+    })
+     
+    
+</script>
+</html>

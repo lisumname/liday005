@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../VUEwenjia/vue.js"></script>
+</head>
+<body>
+    <div id="box">
+       number1:<input type="number" v-model.number="number1">
+        <select v-model="operion">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+        </select>
+        number2: <input type="number" v-model.number="number2">
+        <button @click="eal">=</button>
+        结果: <input type="text" v-model="reslut">
+    </div>
+</body>
+<script>
+     const vm=new Vue({
+        el:'#box',
+        data:{
+            number1:'',
+            number2:'',
+            operion:'+',
+            reslut:''
+        },
+        methods:{
+            eal(){
+                if(this.operion==='+'){
+                 this.reslut=this.number1+this.number2
+                }else if(this.operion==='-'){
+                    this.reslut=this.number1-this.number2
+                }else if(this.operion==='*'){
+                    this.reslut=this.number1*this.number2
+                }else if(this.operion==='/'){
+                    this.reslut=this.number1/this.number2
+                }
+            }
+        }
+     })
+</script>
+</html>

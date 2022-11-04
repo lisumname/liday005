@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../VUEwenjia/vue.js"></script>
+</head>
+<body>
+    <div id="box">
+        <p style="color: red;">我是style</p>
+        <p :style="getstyle()">我是动态添加的style</p>
+
+        <p :style="{color:color}">我是style动态添加的对象样式</p>
+        <!-- 如果动态添加的样式跟属性名一样 可以省略不写 写一个属性名就可以 例:{mynae:mynae}  这样就可以简写为 {mynae} -->
+        <p :style="{color}">我是简写的color</p>
+
+    </div>    
+</body>
+<script>
+    const vm =new Vue({
+        el:'#box',
+        data:{
+            color:'red'
+        },
+        methods:{
+            getstyle(){
+               return {
+                color:'blue',
+                fontsize:'30px'
+               }
+            }
+        }
+    })
+</script>
+</html>

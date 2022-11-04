@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../VUEwenjia/vue.js"></script>
+    <script src="../VUEwenjia/moment.js"></script>
+</head>
+<body>
+    <div id="box">
+        <ul>
+            <!-- 谁要用过滤器就用一个|符号 后边加上过滤器的名字 就可以了 -->
+            <li>{{date | dateFormat}}</li>
+        </ul>
+    </div>
+</body>
+<script>
+     //局部过滤器是写在Vue里面 只能在Vue绑定的属性里使用
+    const vm=new Vue({
+        el:'#box',
+          data:{
+            date:new Date()
+          },
+          filters:{
+                 //局部过滤器  dateFormat是过滤器的名字
+                 dateFormat:function(val){
+                let a= moment(val).format('YYYY-MM-HH:mm:ss');
+                return a
+                 }
+          }
+     })
+</script>
+</html>

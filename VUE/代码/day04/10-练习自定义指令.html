@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../VUEwenjia/vue.js"></script>
+    <style>
+        .age {
+            background-color: red;
+            width: 200px;
+            height: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <p v-color></p>
+        <!-- <button v-color>按钮</button> -->
+    </div>
+    <script>
+        //自定义指令
+        Vue.directive('color', {
+            inserted: function (el) {
+           el.style.backgroundColor='red',
+           el.style.width=200+'px',
+           el.style.height=200+'px'
+            }
+        })
+        const vm = new Vue({
+            el: '#box',
+            data:{
+                flag : false
+            },
+            methods: {
+                info() {
+                    this.flag = !this.flag
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

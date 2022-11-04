@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../VUEwenjia/vue.js"></script>
+</head>
+<body>
+  <div id="box">
+        <ul>
+            <li>{{obj.name}}</li>
+            <li>{{obj.price}}</li>
+            <!-- 图片需要用动态获取 v-bind -->
+            <li><img :src="obj.imgs" alt=""></li>
+        </ul>
+  </div>
+</body>
+<script>
+    const vm=new Vue({
+        el:'#box',
+        data:{
+            obj:{
+                name:'风衣',
+                price:'399$',
+                imgs:'https://img1.baidu.com/it/u=3624365745,3378382487&fm=253&fmt=auto&app=138&f=JPEG?w=504&h=500'
+            }
+        }
+    })
+</script>
+</html>

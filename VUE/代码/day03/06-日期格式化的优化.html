@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../VUEwenjia/vue.js"></script>
+    <script src="../VUEwenjia/moment.js"></script>
+</head>
+
+<body>
+    <div id="box">
+        <p>
+            {{date | newdate('YYYY-MM')}}
+        </p>
+        <p>
+            {{date | newdate('YYYY-MM-HH')}}
+        </p><p>
+            {{date | newdate('YYYY-MM-HH:mm')}}
+        </p>
+    </div>
+</body>
+<script>
+    //定义全局过滤器
+    //   这里的parame1='YYYY-MM-HH:mm:ss'  是默认方式
+    Vue.filter('newdate', function (val,param1='YYYY-MM-HH:mm:ss') {
+        // console.log(val);
+        // 可以利用第二个参数作为形参 可以传递参数
+      let a=  moment(val).format(param1); // 十月 13日 2022, 11:51:09 中午
+         return  a  ;          
+          
+    })
+    const vm = new Vue({
+        el: '#box',
+        data: {
+            date: new Date()
+        }
+    })
+</script>
+
+</html>

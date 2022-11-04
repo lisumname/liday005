@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../VUEwenjia/vue.js"></script>
+</head>
+<body>
+    <div id="box">
+        <p>{{obj1.name}}</p>
+        <p>{{obj1.age}}</p>
+    </div>
+</body>
+<script>
+    const vm=new Vue({
+        el:'#box',
+        data:{
+          obj1:{
+            name:'张三',
+            age:21
+          }
+        },
+        watch:{
+            //这种写法只能监视一个obj1.name
+            // 'obj1.name':{
+            //     handler(){
+            //         console.log('name改变了');
+            //     }
+            // }
+            obj1:{
+                //加了deep就可以深度监视obj1对象里的所有属性
+                deep:true,
+                handler(){
+                    console.log('obj1改变了');
+                }
+            }
+        }
+        }
+    )
+</script>
+</html>

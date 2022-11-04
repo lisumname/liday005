@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        background-color: skyblue;
+    }
+</style>
+
+<body>
+    <div id="box">
+        搜索图书:<input type="text" v-model="keyword">
+        <p></p>
+        <table border="1" style="text-align: center;">
+            <thead>
+                <tr>
+                    <th>图书编号</th>
+                    <th>图书名称</th>
+                    <th>图书价格</th>
+                    <th>图书数量</th>
+                    <th>出版日期</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(item,index) of querybook()" :key="item.id">
+                    <td>{{item.id}}</td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.price}}</td>
+                    <td>
+                        <button @click="numberjl(item)" :disabled="item.number<2">-</button>
+                        {{item.number}}
+                        <button @click="numberadd(item)">+</button>
+                    </td>
+                    <td>{{item.date | datefilter}}</td>
+                    <!-- 告诉当前点击的是哪一个 -->
+                    <td><a href="#" @click.prevent="updateBookToUI(item)">编辑</a></td>
+                    <td><a href="#" @click.prevent="deletbook(index)">删除</a></td>
+
+                </tr>
+            </tbody>
+        </table>
+        <p>商品总价格: <span style="color: red;">{{fullbookprice | pricefilter}}</span> </p>
+
+        id: <input type="text" v-model="id"> <br>
+        图书名称:<input type="text" v-model="sname">
+         <span style="color: red;">{{spandivs}}</span>
+        <br>
+        图书价格:<input type="text" v-model="sprice">
+        <br>
+        图书数量:<input type="text" v-model="snumber">
+        <br>
+        <button @click="addbooks" :disabled="isdavle">添加图书</button>
+        <button @click=" updateBook">修改图书</button>
+
+        <h2>图书数量: {{booksnumbers}}</h2>
+    </div>
+</body>
+<script src="../VUEwenjia/vue.js"></script>
+<script src="../VUEwenjia/moment.js"></script>
+<script>
+    //过滤总价
+    Vue.filter('pricefilter', function (value) {
+        return '￥' + value.toFixed(2)
+    });
+    //过滤日期格式化
+    Vue.filter('datefilter', function (value) {
+        return moment(value).format('YYYY-MM-HH:mm:ss')
+    })
+    const vm = new Vue({
+
+        el: '#box',
+        data: {
+            spandivs:'',
+            isdavle:false,
+            id: '',
+            //输入要输入导出名字双向绑定
+            keyword: '',
+            sname: '',
+            sprice: '',
+            snumber: '',
+            sdate: new Date(),
+            booksName: [{
+                id: 1,
+                name: '天龙八部',
+                price: 99,
+                number: 1,
+                date: new Date()
+            }, {
+                id: 2,
+                name: '射雕英雄传',
+                price: 88,
+                number: 1,
+                date: new Date()
+            }, {
+                id: 3,
+                name: '水浒传',
+                price: 79,
+                number: 1,
+                date: new Date()
+            },]
+        },
+        methods: {
+            //实现删除功能   需要知道删除哪个 
+            deletbook(index) {
+                this.booksName.splice(index, 1)
+            },
+            //需要知道当前点击的是哪个
+            numberjl(item) {
+                item.number--
+            },
+            numberadd(item) {
+                item.number++
+            },
+            addbooks() {
+                let book = {
+                    id: this.booksName.length + 1,
+                    name: this.sname,
+                    price: this.sprice,
+                    number: this.snumber,
+                    date: this.sdate
+                }
+                this.booksName.push(book)
+                this.sname = '',
+                    this.sprice = '',
+                    this.snumber = ''
+            },
+            //用methods实现搜索功能
+            querybook() {
+                return this.booksName.filter(item => item.name.includes(this.keyword))
+            },
+            //编辑功能实现数据回显
+            updateBookToUI(book) {
+                this.sname = book.name;
+                this.sprice = book.price;
+                this.snumber = book.number;
+                this.id = book.id
+            },
+            //真正修改图书
+            updateBook() {
+                for (let book of this.booksName) {
+                    if (book.id == this.id) {
+                        book.name = this.sname
+                        book.price = this.sprice
+                        book.number = this.snumber
+                        break
+                    }
+                }
+                this.id=''
+                this.sname=''
+                this.sprice=''
+                this.snumber=''
+            }
+
+        },
+        computed: {
+            //计算商品总价
+            fullbookprice() {
+                let sum = 0;
+                for (let book of this.booksName) {
+                    sum = sum + book.number * book.price
+                }
+                return sum
+            },
+            //计算图书数量
+            booksnumbers(){
+                return this.booksName.length
+            }
+        },
+        //监视图书名称 如果存在就禁用添加按钮
+        watch:{
+            sname(newvalue){
+                //当sanme输入东西的时候循环遍历图书查看有没有相同的
+               //先假设默认是可以添加的
+            //    console.log(newvalue);
+            //    let flag=false;
+            //    for(let book of this.booksName){
+            //     if(book.name===newvalue){
+            //         flag=true;
+            //         this.spandivs='该图书已存在'
+            //         break
+            //     }else{
+            //         this.isdavle=flag
+            //         this.spandivs=''
+            //     }
+            //    }
+               for(let book of this.booksName){
+                if(book.name===newvalue){
+                    this.isdavle=true
+                    this.spandivs='该图书已存在'
+                    break
+                }else{
+                    this.isdavle=false
+                    this.spandivs=''
+                }
+               }
+              
+            }
+        }
+    })
+</script>
+
+</html>

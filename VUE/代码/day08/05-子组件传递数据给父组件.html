@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="box">
+        <child @send="parenthandle"></child>
+        <ul>
+            <li v-for="item in obj1">子组件传递来的数据--{{item}}</li>
+        </ul>
+    </div>
+</body>
+<template id="child">
+    <div>
+        <h1>子组件</h1>
+        <!-- 子组件向父组件传递数据 需要用一个事件传递 -->
+        <a href="#" @click.prevent="childhandle">点我向父组件传递数据</a>
+    </div>
+</template>
+<script src="../VUEwenjia/vue.js"></script>
+<script>
+    //定义子组件
+    Vue.component('child', {
+        template: '#child',
+        data() {
+            return {
+                obj: {
+                    name: '张三',
+                    age: 21
+                }
+            }
+        },
+        methods: {
+            childhandle() {
+                this.$emit('send', this.obj)
+            }
+        },
+    })
+    new Vue({
+        el: '#box',
+        data:{
+            obj1:{}
+        },
+        methods:{
+            parenthandle(value){
+               this.obj1=value
+               console.log(this.obj1);
+            }
+        }
+    })
+</script>
+
+</html>

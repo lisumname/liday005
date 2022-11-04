@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../VUEwenjia/vue.js"></script>
+</head>
+<body>
+    <div id="box">
+        <input type="text" v-color="'orange'">
+    </div>
+</body>
+<script>
+    const vm=new Vue({
+        el:'#box',
+        //局部自定义指令directive需要加s-->directives
+        //  原写法
+        // directives:{
+        //     color:{
+        //         inserted:function(el){
+        //           el.focus();
+        //         }
+        //     }
+        // }
+           
+        // 简写
+          directives:{
+            //color就是自定义指令名字  innserted 或 bind 给省略了
+            //简写只包括bind和updated
+            color(el,param1){
+              el.style.backgroundColor=param1.value
+            //   el.focus()
+            }
+          }
+    })
+</script>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../VUEwenjia/vue.js"></script>
+    <style>
+        .isyle{
+            background-color: red;
+        }
+        .blue{
+        background-color: blue;
+      }
+    </style>
+</head>
+<body>
+    <div id="box">
+       <child :class="ins">
+        <!-- 在Vue中已经被废弃了 但是也可以用 -->
+        <button slot="slot1" @click="info">插槽1的数据</button>
+        <button slot="slot2"  @click="infos">插槽2的数据</button>
+       </child>
+    </div>
+</body>
+ <template id="child">
+    <div>
+        <!-- 想传递多个 让分开就得指定name了 -->
+        <slot name="slot1">默认插槽1</slot>
+        <h1>子组件</h1>
+        <slot name="slot2">默认插槽2</slot>
+    </div>
+ </template>
+<script>
+    //定义子组件
+    Vue.component('child',{
+        template:'#child'
+    })
+
+
+    new Vue({
+        el:'#box',
+        data:{
+         ins:''
+        },
+        methods: {
+            info(){
+            this.ins='isyle'
+            },
+            infos(){
+            this.ins='blue'
+            }
+        },
+    })
+</script>
+</html>

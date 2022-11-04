@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../VUEwenjia/vue.js"></script>
+</head>
+
+<body>
+    <div id="box">
+        <select v-model="username">
+            <option value="小军">小军</option>
+            <option value="小马">小马</option>
+            <option value="小绿">小绿</option>
+            <option value="小亮">小亮</option>
+        </select>
+        <p>你当前选择的用户是: {{username}}</p>
+    </div>
+   
+</body>
+<script>
+    const vm = new Vue({
+        el: '#box',
+        data: {
+            username: '小军'
+        }
+    })
+</script>
+
+</html>

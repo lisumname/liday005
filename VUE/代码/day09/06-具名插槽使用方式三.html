@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../VUEwenjia/vue.js"></script>
+</head>
+<body>
+    <div id="box">
+       <child >
+        <!-- 方式三 template #号后边就是name指定的值 -->
+        <!-- 官网推荐的 -->
+        <template #slot1>
+            <button>插槽1的数据</button>
+        </template>
+        <template #slot2>
+            <button>插槽2的数据</button>
+        </template>
+        <template #slot3>
+            <button>插槽3的数据</button>
+        </template>
+         <button>没有名字</button>
+       </child>
+    </div>
+</body>
+ <template id="child">
+    <div>
+        <!-- 想传递多个 让分开就得指定name了 -->
+        <slot name="slot1">默认插槽1</slot>
+        <h1>子组件</h1>
+        <slot name="slot2">默认插槽2</slot>
+        <h2>多个sloat</h2>
+        <slot name="slot3">默认插槽2</slot>
+        <!-- 该插槽没有名字,默认插槽 兜底的 -->
+        <slot>默认插槽</slot>
+    </div>
+ </template>
+<script>
+    //定义子组件
+    Vue.component('child',{
+        template:'#child'
+    })
+    new Vue({
+        el:'#box'
+    })
+</script>
+</html>

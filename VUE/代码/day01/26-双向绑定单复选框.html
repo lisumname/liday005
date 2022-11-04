@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../VUEwenjia/vue.js"></script>
+</head>
+<body>
+    <div id="box">
+        同意条款请勾选<input type="checkbox" :checked="inpt" v-model="inpt">
+        <!-- 让按钮一开始是不可点击的状态 利用双向绑定给注册按钮取反一下inpt的值就可以了 -->
+        <button :disabled="!inpt">注册</button>
+    </div>
+</body>
+<script>
+    const vm=new Vue({
+        el:'#box',
+        data:{
+            inpt:false
+        }
+    
+    })
+</script>
+</html>

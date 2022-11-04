@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box">
+        <input type="text" ref="reference">
+        <button @click="info">点击获取文本框的DOM元素</button>
+    </div>
+    <script src="../文件/vue.js"></script>
+    <script>
+        const vm= new Vue({
+            el:'#box',
+            methods: {
+                info(){
+                    console.log(this.$refs.reference.value);
+                }
+            },
+        })
+    </script>
+</body> 
+</html>

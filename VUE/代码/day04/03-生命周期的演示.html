@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../VUEwenjia/vue.js"></script>
+</head>
+
+<body>
+    <div id="box">
+        <p>{{message}}</p>
+        <button @click="btnobj">销毁Vue实例</button>
+    </div>
+</body>
+<script>
+    const vm = new Vue({
+        el: '#box',
+        data: {
+            message: 'Helloworld'
+        },
+        //定义一个方法 methods  
+        methods: {
+            btnobj() {
+                // $destory()是销毁Vue实例对象的
+               console.log('没了');
+                this.$destroy()
+            }
+        },
+
+         beforeCreate() {
+               console.log(this.btnobj());   //属性和方法都没准备好的时候就是刚创建期间 所以没法访问data和methods里的属性和方法           
+         },
+        //1.生命周期创建期间的第二个函数  created()  一共有四个 第一个就不关心了
+        // created() {
+        //     //最早时机,可以访问data和methods中的属性和方法的
+        //     console.log('我是created');
+        //     console.log(this.btnobj);
+        //     console.log(this.message);
+        // },
+        //生命周期创建期间的第三个函数 beforemount 也可以访问data和methods中的属性和方法 不在演示 
+        
+        //生命周期创建期间的第四个函数 mounted(),跟created差不多 这两个 用哪个都一样 
+        // mounted() {
+        //     console.log(this.message);
+        //     console.log('我是mounted');
+        // },
+
+        //2. 运行期间的生命周期一共有两个
+        //1.当数据发生了改变的时候会被触发,0次或多次,更新之前执行,data中的数据是新的
+        // beforeUpdate() {
+        //     // console.log('@@@@'+this.message);
+        //     console.log('-----------');
+        //     let obj11=document.querySelector('p');
+        //     console.log(obj11.innerText);
+        // },
+        //updated 是运行期间生命周期的第二个函数  更新完毕之后在执行
+        // updated() {
+        // //    console.log("@@@@"+this.message);  
+        //    let obj11=document.querySelector('p');
+        //     console.log(obj11.innerText);          
+        // },
+
+        //生命周期的销毁期间一共有两个
+        //1.beforeDestroy()//真正销毁之前，还可以获取data数据和methods方法的  //常用
+        // beforeDestroy() {
+        //    console.log(this.message);
+        //     btnobj()
+        // },
+        //第二个函数是destroyed()销毁,更多表达的是一种状态
+        // destroyed() {
+        //    console.log(this.message);
+        //    console.log('被销毁了');   
+        //    btnobj()         
+        // },
+    })
+</script>
+
+</html>

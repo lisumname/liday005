@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../VUEwenjia/vue.js"></script>
+</head>
+<body>
+    <div id="box">
+                <!-- multiple是下拉框选择多个的关键字 -->
+               <select  v-model="username" multiple>
+                <option value="小马">小马</option>
+                <option value="小绿">小绿</option>
+                <option value="小红">小红</option>
+                <option value="小李">小李</option>
+               </select>
+
+               <p>你选择的爱好是: {{username}}</p>
+    </div>
+</body>
+<script>
+    const vm=new Vue({
+        el:"#box",
+        data:{
+            username:''
+        }
+    })
+</script>
+</html>

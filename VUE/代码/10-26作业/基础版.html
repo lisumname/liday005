@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+
+<body>
+    <section id="todoapp" class="todoapp">
+        <header class="header">
+            <h1>todolist</h1>
+            <input placeholder="添加任务项" @keyup.enter="addTodo" class="new-todo" v-model="add">
+        </header>
+        <section class="main">
+            <input id="toggle-all" type="checkbox" class="toggle-all">
+            <label for="toggle-all">Mark all as complete</label>
+            <ul class="todo-list">
+
+                <li v-for="(item, index) in todos" v-bind:class="{completed: item.completed}" :key="item.id">
+                    <div class="view">
+                        <input type="checkbox" class="toggle" v-model="item.completed">
+                        <label> {{item.text}}</label>
+                        <button class="destroy" @click="removeTodo(index, $event)"></button>
+                    </div>
+                    <input class="edit" @keyup.enter="saveEdit(item, index, $event)" :value="item.title"
+                        @keyup.esc="currentEditing = null">
+                </li>
+            </ul>
+        </section>
+        <footer class="footer">
+            <span class="todo-count"><strong>{{lengthtodos}}</strong> item left</span>
+        </footer>
+    </section>
+    <script src="./vue.js"></script>
+    <script>
+        const vm = new Vue({
+            el: '#todoapp',
+            data: {
+                add: '',
+                todos: [],
+                lengthtodos: 0
+            },
+            methods: {
+                addTodo() {
+                    let obj = {
+                        id: this.todos.length,
+                        completed: false,
+                        text: this.add
+                    }
+                    this.todos.push(obj)
+                    this.add = ''
+                    this.lengthaddd = this.todos.length
+                },
+                removeTodo(index) {
+                    this.todos.splice(index, 1)
+                }, 
+            },
+            watch: {
+                todos: {
+                    deep: true,
+                    handler() {
+                        let len=this.todos.filter(function (item) {
+                            return item.completed === false
+                        })
+                        this.lengthtodos=len.length
+                    }
+                }
+            }
+
+        })
+    </script>
+</body>
+
+</html>

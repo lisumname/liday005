@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box">
+      <child>
+        <ul slot-scope="myslotobj">
+            <!-- myslotobj里保存到就是一个对象 对象里子组件里定义slot的每一个数据  -->
+            <li v-for="item in myslotobj.data"> {{item}}</li>
+        </ul>
+      </child>
+    </div>
+</body>
+<template id="child">
+    <div>
+        <h1>这个是子组件</h1>
+         <!-- 用slot 自定义属性传递过去数据 在父模板种使用 -->
+         <slot :data="users">
+            <p>这个是默认插槽</p>
+         </slot>
+    </div>
+</template>
+<script src="../VUEwenjia/vue.js"></script>
+<script>
+    //定义子组件
+    Vue.component('child',{
+       template:"#child",
+       data() {
+        return {
+            users:['张三',
+            '王五',
+            '李四',
+            '小军'
+        ]
+        }
+       },
+    })
+    new Vue({
+        el:'#box'
+    })
+</script>
+</html>

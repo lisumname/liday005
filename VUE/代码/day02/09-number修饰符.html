@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../VUEwenjia/vue.js"></script>
+</head>
+<body>
+    <div id="box">
+        <input type="number" v-model.number="number">
+        <thead>
+            <th>
+                <!-- number就是检测出的都是number类型  -->
+                <tr>{{typeof number}}</tr>
+            </th>
+        </thead>
+    </div>
+    <script>
+        const vm=new Vue({
+            el:'#box',
+            data:{
+                number:''
+            }
+        })
+    </script>
+</body>
+</html>

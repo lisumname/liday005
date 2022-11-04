@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script  src="../VUEwenjia/vue.js"></script>
+</head>
+<body>
+    <div id="box">
+        <!-- 给标签加一个v-once代表只允许标签内容只能被修改一次/或者说不能被修改 -->
+    <p v-once>{{mesage}}</p>
+    </div>
+</body>
+<script>
+    const vm=new Vue({
+        el:'#box',
+        data:{
+            mesage:'aaa'
+        }
+    })
+</script>
+</html>

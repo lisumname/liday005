@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../VUEwenjia/vue.js"></script>
+</head>
+<body>
+      <div id="box">
+                                 <!-- 传参的时候也一定要带上单引号 -->
+        <input type="text" v-color="'red'">
+      </div>
+</body>
+<script>
+      const vm=new Vue({
+        el:'#box',
+        directives:{
+          color:{
+            //可以利用第二个参数 传参的方式  param1是一个对象 身上有一个value值 就是我们所传的参数
+            inserted:function(el,param1){
+              //需要调用param1身上的value来使用 因为value就是我们所传的参数
+              el.focus()
+              el.style.backgroundColor=param1.value;
+            }
+          }
+        }
+      })
+</script>
+</html>

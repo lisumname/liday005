@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../VUEwenjia/vue.js"></script>
+</head>
+<body>
+    <div id="box">
+        <table border="1">
+            <thead>
+                <th>图书编号</th>
+                <th>图书名称</th>
+                <th>图书价格</th>
+                <th>图书数量</th>
+                <th>单价总和</th>
+                <th>出版时间</th>
+                <th>操作</th>
+            </thead>
+            <tbody>
+                <tr v-for="(item,index) of booksName" :key="item.id">
+                    <td>{{item.id}}</td>
+                    <td>{{item.bookName}}</td>
+                    <td>{{item.price}}</td>
+                    <td>
+                        <button :disabled="item.number<2" @click="pricej(item)">-</button>
+                        {{item.number}}
+                        <button @click=" addprice(item)">+</button>
+                    </td>
+                    <td>{{item.priceboosadd}}</td>
+                    <td>{{item.bookDate | computedate}}</td>
+                    <td><a href="#" @click.prevent="deletebook(index)">删除</a></td>
+                </tr>
+            </tbody>
+        </table>
+        <p>图书总价:{{priceboosaddsum | computefillter}} </p>
+    </div>
+</body>
+<script src="../VUEwenjia/moment.js"></script>
+<script>
+    Vue.filter('computefillter',function(value){
+        return '￥'+value.toFixed(2)
+    });
+    //日期格式化
+    Vue.filter('computedate',function(value){
+        return   moment(value).format('YYYY-MM-HH:mm:ss')
+    })
+   const vm= new Vue({
+    
+         el:'#box',
+         data:{
+            booksName:[{
+                id:1,
+                bookName:'天龙八部',
+                price:99,
+                number:1,
+                priceboosadd:99,
+                bookDate:new Date()
+            },{
+                id:2,
+                bookName:'射雕英雄传',
+                price:88,
+                number:1,
+                priceboosadd:88,
+                bookDate:new Date()
+            },{
+                id:1,
+                bookName:'水浒传',
+                price:199,
+                number:1,
+                priceboosadd:199,
+                bookDate:new Date()
+            }]
+         },
+         methods: {
+            //删除功能 需要知道删除的是哪一个 用传参表示 index接收的就是当前点击的位置
+            deletebook(index){
+                this.booksName.splice(index,1)
+            },
+            addprice(book){
+                book.number++
+                book.priceboosadd=book.number*book.price
+            },
+            pricej(book){
+                book.number--
+                book.priceboosadd=book.number*book.price
+            }
+         },
+         computed:{
+            priceboosaddsum(){
+                let sum=0;
+             for(let book of this.booksName){
+                 sum=sum+book.price*book.number
+                // sum=sum+book.priceboosadd
+             }
+             return sum
+            }
+         }
+    })
+</script>
+</html>

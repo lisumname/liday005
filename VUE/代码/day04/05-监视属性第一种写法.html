@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../VUEwenjia/vue.js"></script>
+</head>
+
+<body>
+    <div id="box">
+        <p>
+            {{name}}
+        </p>
+        <button @click="info">切换</button>
+    </div>
+</body>
+<script>
+    const vm = new Vue({
+        el: '#box',
+        data: {
+            flag: false,
+            name: '张三'
+        },
+        methods: {
+            info() {
+                this.flag = !this.flag
+            }
+        },
+        //监视属性
+        watch: {
+            //监视的名字
+            flag: {
+                handler(newValue, olValue) {
+                    console.log('flag值修改了' + newValue, olValue);
+                    if (newValue=== true) {
+                        this.name = '李四'
+                    } else {
+                        this.name = '张三'
+                    }
+
+                }
+            }
+        }
+    })
+</script>
+
+</html>

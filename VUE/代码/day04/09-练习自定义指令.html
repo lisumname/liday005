@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../VUEwenjia/vue.js"></script>
+</head>
+
+<body>
+    <div id="box">
+        
+        <p v-color="['blue',200+'px',200+'px']"></p>
+    </div>
+</body>
+<script>
+    //定义全局自定义指令 全局的directive不带s 局部的带 directives
+    Vue.directive('color', {
+        inserted: function (el, parme1) { //接收一个el参数 这个el就是是绑定了这个指令就是谁的原生DOM
+            console.log(parme1);
+            el.style.backgroundColor = parme1.value[0],    
+            el.style.height = parme1.value[1],
+            el.style.width = parme1.value[2]
+             
+        }
+    })
+    const vm = new Vue({
+        el: '#box',
+
+    })
+</script>
+
+</html>

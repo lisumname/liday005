@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../VUEwenjia/vue.js"></script>
+</head>
+<body>
+    <div id="box">
+        <button @click="logingHandle">登录界面</button>
+        <button @click="registerHandle">注册界面</button>
+        <!-- Vue本身提供了一个内置组件能够实现组件切换 -->
+        <!-- is的值就是组件的名称 -->
+        <component :is="mesg"></component>
+    </div>
+</body>
+<!-- //登陆界面的信息 -->
+<template id="mytemplate">
+    <div>
+        <h1>登陆界面</h1>
+    </div>
+   </template>
+
+   <!-- //注册界面的信息 -->
+   <template id="thtemplate">
+    <div>
+        <h1>注册界面</h1>
+    </div>
+   </template>
+<script>
+      //创建登录界面组件
+      Vue.component('mycomponent',{
+        template:'#mytemplate'
+    })
+    //创建注册界面组件
+    Vue.component('thcomponent',{
+        template:'#thtemplate'
+    })
+   const vm= new Vue({
+         el:'#box',
+         data:{
+            mesg:'mycomponent'
+         },
+         methods: {
+            logingHandle(){
+                this.mesg='mycomponent'
+            },
+            registerHandle(){
+                this.mesg='thcomponent'
+            }
+         },
+    })
+</script>
+</html>

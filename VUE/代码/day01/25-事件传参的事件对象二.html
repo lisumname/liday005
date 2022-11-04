@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../VUEwenjia/vue.js"></script>
+</head>
+<body>
+    <div id="box">
+        <!-- 当传参的时候可以给事件对象 加一个$符号 代表这是一个事件对象 -->
+     <button @click="btnobj($event,'spring',12312,'我是parm3')">点击触发事件对象event</button>
+    </div>
+</body>
+<script>
+    const vm =new Vue({
+        el:'#box',
+        methods:{
+            //既想传多个值,也想获取事件对象event
+            btnobj(event,parm,parm2,parm3){
+                // console.log(event,parm,parm2,parm3);    //在没有传实参的时候 后三个是undefind  而第一个会自动被输出为事件对象
+                console.log(event,parm,parm2,parm3);       //让谁作为事件对象 传实参的时候就给谁加一个$符号
+       
+            }
+        }
+    })
+</script>
+</html>

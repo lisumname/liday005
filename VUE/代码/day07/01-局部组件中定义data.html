@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../VUEwenjia/vue.js"></script>
+</head>
+<body>
+    <div id="box">
+          <my-component></my-component>
+    </div>
+</body>
+<template id="myTemplat">
+    <div>
+        <h1>我是标题一</h1>
+        <h2>我是标题二</h2>
+        <h3>我是标题三</h3>
+        <p>组件的data:{{info}}</p>
+    </div>
+</template>
+<script>
+    new Vue({
+        el:'#box',
+        data:{
+            mes:'HelloWorld'
+        },
+        //创建组件
+        components:{
+            myComponent:{
+                template:'#myTemplat',
+                //组件中的data必须是一个函数 函数里必须返回一个对象
+                //这个data是属于myComponent组件的,该数据只能在该组件中使用
+                data:function(){
+                    return {
+                       info:'Spring' 
+                    }
+                },
+            }
+        }
+    })
+</script>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <input type="text" id="listr">; -->
+
+    <script>
+        // let reg=/\d/         // \d是代表必须包含一位数字
+        // let reg=/\d\d/      // \d\d是代表必须包含两位数字
+        // let reg=/\D/;         // \D是代表必须包含一位非数字
+        // let reg=/\D\D/;         // \D\D是代表必须包含两位非数字
+        //   let reg=/\Dk/;         // \Dk/是代表必须包含一位非数字而且必须是包含k
+        //   let reg=/\Dk\D/;          // \Dk\D/是代表必须包含两位非数字而且必须是有包含k
+        let reg=/\Dk\D\s/;             //\s是表示必须包含空格(换行,缩进，空格)
+        console.log(reg.test('dadsak! '));
+    </script>
+</body>
+</html>

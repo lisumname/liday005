@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../VUEwenjia/vue.js"></script>
+</head>
+
+<body>
+    <div id="box">
+        <parent></parent>
+        <!-- <child></child> -->
+    </div>
+</body>
+<!-- 定义父组件模板 -->
+
+<template id="parentTemplate">
+    <div>
+        <h1>这是父组件</h1>
+        <h2>好好学习,天天向上</h2>
+        <h1> {{schoolname}} </h1>
+        <!-- 这里写上子组件的组件名写成标签模式 就形成了组件嵌套 包着的就是父组件,被包着的就是子组件  -->
+          <!-- 这种方式传递的数据就是传递是一个字符串 -->
+          <!-- 这里就要写这种样式 -->
+        <child :child-info="schoolname"></child>
+    </div>
+</template>
+<!-- 定义子组件模板 -->
+<template id="childTemplate">
+    <div>
+        <!-- 在父组件中定义的数据能否直接在子组件里使用呢？ -->
+        <!-- 在组件中定义的数据 只能在当前组件中使用 -->
+        <h1>这是子组件</h1>
+        <h2>好好学习,天天向上</h2>
+        <h2>这个是子组件访问父组件的数据:{{childInfo}}</h2>
+    </div>
+</template>
+
+<script>
+    //1.定义父组件
+    Vue.component('parent', {
+        template: '#parentTemplate',
+        //组件里的data必须是一个函数 必须return(返回)一个对象  对象里就是写的一些数据
+        data() {
+            return {
+                schoolname: '父组件的信息'
+            }
+        },
+    })
+    //2.定义子组件
+    Vue.component('child', {
+        template: '#childTemplate',
+        //如果命名是多个单词组成的话这里正常写 上边定义的时候每个单词用-隔开
+        props:['childInfo']
+    })
+
+
+    new Vue({
+        el: '#box'
+    })
+</script>
+
+</html>

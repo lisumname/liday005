@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../VUEwenjia/vue.js"></script>
+</head>
+<body>
+    <div id="box">
+        <!-- //不加:号就不是动态绑定的属性 不动态绑定属性 那么双引号的值就会被看成文本  -->
+        <!-- 加了:号就会看出一个变量 可以变量拼接 也可以文本拼接 -->
+        <!-- 文本拼接 -->
+        <!-- <p :title="content + 'simber'">我是p</p> -->
+        <!-- 变量拼接 -->
+        <p :title="content + number">我是p</p>   
+    </div>
+    <script>
+        const vm=new Vue({
+            el:"#box",
+            data:{
+                content:'我是一个文本....',
+                number:21
+            }
+        })
+    </script>
+</body>
+</html>

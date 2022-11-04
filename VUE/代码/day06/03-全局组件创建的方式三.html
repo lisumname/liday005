@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../VUEwenjia/vue.js"></script>
+</head>
+
+<body>
+    <div id="box">
+        <my-component></my-component>
+    </div>
+     
+       <!-- 专门定义一个组件存放标签会更方便 起一个id 在template使用 -->
+    <template id="myTemplate">
+        <div>
+            <p>我是p</p>
+            <h1>我是标题1</h1>
+            <button>我是按钮1</button>
+            <button>我是按钮2</button>
+        </div>
+    </template>
+    <script>
+        //创建组件
+        const myComponentyCo={
+            template:'#myTemplate'
+        }
+        //注册组件 第一个参数是使用组件的名字 第二个参数是创建好的组件
+        Vue.component('myComponent',myComponentyCo)
+        const vm=new Vue({
+            el:'#box'
+        })
+    </script>
+</body>
+</html>

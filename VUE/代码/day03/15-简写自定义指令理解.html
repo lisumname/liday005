@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../VUEwenjia/vue.js"></script>
+</head>
+
+<body>
+    <div id="box">
+        <input type="text" v-model="name">----<input type="text" v-color>
+    </div>
+</body>
+<script>
+    const vm = new Vue({
+        el: '#box',
+        data: {
+            name: '张三'
+        },
+        directives: {
+            color(el) {
+                //在管理范围 页面只要又被更改的就会触发这个update
+                // update就会重新渲染这个页面    简写只包括 bind 和 update 
+            el.focus()
+            }
+
+        }
+
+
+    })
+</script>
+
+</html>

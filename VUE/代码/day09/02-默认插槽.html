@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../VUEwenjia/vue.js"></script>
+</head>
+
+<body>
+    <div id="box">
+        <child></child>
+        <!-- 没有写东西就是默认插槽内容 写了就是写了的内容 -->
+        <child><button>按钮</button></child>
+    </div>
+</body>
+<template id="child">
+    <div>
+        <h1>这个是子组件</h1>
+        <!-- 插槽1 -->
+        <slot>
+            <strong>默认插槽</strong>
+        </slot>
+    </div>
+    </template>
+    <script>
+        //创建子组件
+        Vue.component('child', {
+            template: '#child'
+        })
+
+
+        const vm = new Vue({
+            el:'#box'
+        })
+    </script>
+
+</html>

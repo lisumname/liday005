@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../VUEwenjia/vue.js"></script>
+</head>
+<body>
+    <div id="box">
+        <!-- //需要给被循环的标签动态添加一个:key="item.id" 说明指定的唯一的 不指定key 动态添加一个属性会赋值下一个元素的属性 -->
+        <p v-for="item in mesage" :key="item">
+            <input type="checkbox">
+            {{item}}
+        </p>
+
+    </div>
+</body>
+<script>
+    const vm=new Vue({
+        el:"#box",
+        data:{
+            mesage:['麻子','王五','马六','小明']
+        }
+    })
+</script>
+</html>

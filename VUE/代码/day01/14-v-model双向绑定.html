@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  
+</head>
+<body>
+    <div id="box">
+      爱好:
+      游泳: <input type="checkbox" v-model="message" value="游泳">
+      lol: <input type="checkbox" v-model="message" value="lol">
+      唱歌: <input type="checkbox" v-model="message" value="唱歌">
+      打游戏: <input type="checkbox" v-model="message" value="打游戏">
+      <!-- 可以在p标签里遍历数组 -->
+      <p v-for="values in message">你选择的爱好是:{{values}}</p>
+    </div>
+    <script src="../VUEwenjia/vue.js"></script>
+    <script>
+        const vm=new Vue({
+            el:"#box",
+            data:{
+                message:[]
+            }
+        })
+    </script>
+</body>
+</html>

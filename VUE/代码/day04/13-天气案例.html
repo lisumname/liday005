@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../VUEwenjia/vue.js"></script>
+</head>
+
+<body>
+    <div id="box">
+        <p>今天天气很{{fullName}}</p>
+        <button @click="info">切换天气</button>
+    </div>
+</body>
+<script>
+    const vm = new Vue({
+        el: '#box',
+        data: {
+            firstName:'炎热',
+            flag:true
+        },
+        methods: {
+            info(){
+                this.flag=!this.flag
+            }
+        },
+        //计算属性里不可以写异步操作代码 ,监视属性里可以 因为计算属性靠的是return来返回值
+        computed:{
+            fullName(){
+            //  setTimeout(function(){
+            //     return this.flag ? this.firstName='炎热': this.firstName='凉爽'
+            //  },1000)
+            return this.flag ? this.firstName='炎热': this.firstName='凉爽'
+            }
+        }
+        // computed: {
+        //     //正常写法
+        //     // fullName:{
+        //     //    get(){
+        //     //     return this.firstName+'-'+this.lastName
+        //     //    },
+        //     // set(){
+        //     //       return console.log('我是set');
+        //     // }
+        //     // }
+        //     //简写:只考虑get不考虑set才可以
+        //     fullName() {
+        //         return this.firstName + '-' + this.lastName
+        //     }
+        // }
+    })
+</script>
+
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../VUEwenjia/vue.js"></script>
+</head>
+
+<body>
+    <div id="box">
+        <p>{{name |names('xxx')}}</p>
+    </div>
+</body>
+<script>
+    const vm = new Vue({
+        el: '#box',
+        data: {
+            name: '张三李四',
+        },
+        //定义局部过滤器
+        filters: {
+            names: function (val, param1) {
+
+                return param1 + val.replace('三', 'Three')
+
+            },
+        }
+    })
+</script>
+
+</html>

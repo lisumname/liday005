@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../VUEwenjia/vue.js"></script>
+</head>
+
+<body>
+    <div id="box">
+       <mycomponent></mycomponent>
+    </div>
+    <template id="mytemplate">
+        <div>
+            <p>我是p</p>
+            <strong>我是strong</strong>
+            <h1>我是标题1</h1>
+            <button>我是按钮</button>
+            {{info}}
+        </div>
+    </template>
+</body>
+<script>
+    //1.创建组件
+    Vue.component('mycomponent', {
+        template: '#mytemplate',
+        data() {
+            return {
+                 info:'Spring'
+            }
+        },
+    })
+    const vm = new Vue({
+        el: '#box',
+    })
+</script>
+
+</html>

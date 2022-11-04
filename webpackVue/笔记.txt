@@ -1,0 +1,23 @@
+抽离style样式单独放一个文件 需要用一个插件
+npm install mini-css-extract-plugin -D
+然后先引入 
+const MiniCssExtractPlugin=require('mini-css-extract-plugin')
+然后在plugins里边实例化：
+plugins:[
+    new MiniCssExtractPlugin({
+        fliename:''  //可以指定css文件名 
+    })
+    use里的style-loder就没用了,换成MiniCssExtractPlugin
+]
+ 
+ 压缩css文件
+npm install css-minimizer-webpack-plugin -D
+引入 
+const CssMinimizerPlugin=require('css-minimizer-webpack-plugin')
+不在pligins里边做配置 在优化的配置里做配置  
+optimization:{
+    minimizer:[
+        new CssMinimizerPlugin()
+    ]
+}
+还需要将mode:'development'改为mode:'production'

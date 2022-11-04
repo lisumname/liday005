@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../VUEwenjia/vue.js"></script>
+</head>
+<body>
+    <div id="box">
+        <!-- 驼峰命名的组件名写法 <my-component></my-component> -->
+        <!-- <myComponent></myComponent>  驼峰命名的组件错误写法 -->
+        <my-component></my-component>
+        <my-component></my-component>
+        <my-component></my-component>
+    </div>
+    <script>
+        //创建组件的方式二  {创建组件的本质就是创建个对象}
+         const myComponent={
+            template:`
+            <div>
+                <p>helloWorld</p>
+                <h1>我是标题1</h1>
+                <button>点我按钮</button>
+                <ul>
+                   <li>我是li</li> 
+                    </ul>
+                </div> 
+                 `
+         }
+         Vue.component('myComponent',myComponent)
+        const vm=new Vue({
+            el:'#box',
+            data:{
+                
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../VUEwenjia/vue.js"></script>
+</head>
+<body>
+    <div id="box">
+        <p>{{fullName}}</p>
+    </div>
+</body>
+<script>
+    const vm=new Vue({
+        el:'#box',
+        data:{
+           firstName:'张',
+           lastNmae:'三' 
+            
+        },
+        //想让两个属性拼接的一起 需要写在计算属性里
+        computed:{
+            fullName:{
+                //get作用 当有人调用了/{{fullNmae}}读取了这个fullname就会触发 且返回值就作为fulName的值
+                //get 什么时候调用 1.初次读取fullName的时候 2.所依赖的数据发生变化时
+                get(){
+                    console.log('我被读取了');
+                    return this.firstName+'-'+this.lastNmae
+                },
+                 //set作用 当有人修改了这个fullname时候就会触发 返回的就是set里的返回值
+                set(value){
+                    // return this.lastNmae+'-'+firstName
+                    const arr=value.split('-');
+                    this.firstName=value[0];
+                    this.lastNmae=value[1]
+                }
+            }
+        }
+    })
+</script>
+</html>

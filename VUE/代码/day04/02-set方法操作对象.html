@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../VUEwenjia/vue.js"></script>
+</head>
+<body>
+    <div id="box">
+        <p>{{username.user}}</p>
+        <p>{{username.age}}</p>
+        <button @click="newobjcet1">操作对象</button>
+    </div>
+</body>
+<script>
+   const vm= new Vue({
+        el:'#box',
+        data:{
+            username:{
+                user:'张三李四'
+            }
+        },
+        methods: {
+            newobjcet1(){
+                //这个方式没办法实现添加属性
+                // this.username.age=30
+                //set方法可以实现
+                // Vue.set(this.username,'age',40);
+                //set方法写法2
+                this.$set(this.username,'age',199)
+            }
+        },     
+    })
+</script>
+</html>

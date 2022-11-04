@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../VUEwenjia/vue.js"></script>
+</head>
+
+<body>
+    <div id="box">
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>图书编号</th>
+                    <th>图书名称</th>
+                    <th>图书价格</th>
+                    <th>图书数量</th>
+                    <th>总合计</th>
+                    <th>出版时间</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(item,index) of books" :key="item.id">
+                    <td>{{item.id}}</td>
+                    <td>{{item.bookName}}</td>
+                    <td>{{item.price}}</td>
+                    <td>
+                        <button :disabled="item.number<2" @click="substract(item)">-</button>
+                        {{item.number}}
+                        <button @click="add(item)">+</button>
+                    </td>
+                    <td>{{item.pricesd}}</td>
+                    <td>{{item.publishDate | datafilter}}</td>
+                    <td><a href="" @click.prevent="deleteBookHandle(index)" style="text-decoration: none;">删除</a></td>
+                </tr>
+            </tbody>
+        </table>
+        图书名称：<input type="text" v-model="names">
+        图书价格:<input type="text" v-model="bookprice">
+        图书数量: <input type="text" v-model="booknumber">
+        单价总价: <input type="text" v-model="bookpricese">
+        <button @click="addBbooks">添加</button>
+        <p>
+            价格总和:{{totalPrice | priceFormat}}
+        </p>
+
+    </div>
+</body>
+<script src="../VUEwenjia/moment.js"></script>
+
+<script>
+    Vue.filter('datafilter',function(value){
+        return moment(value).format('YYYY-MM-HH:mm:ss')
+    })
+    //接受的value 就是插入在哪里的结果
+    Vue.filter('priceFormat', function (value) {
+        //   console.log(value);
+        //toFixed是保留后两位小数
+        return '￥' + value.toFixed(2)
+    })
+    const vm = new Vue({
+        el: '#box',
+        data: {
+            bookpricese:'',
+            names: '',
+            bookprice: '',
+            booknumber: '',
+            bookdate: new Date(),
+            books: [{
+                id: 1,
+                bookName: '天龙八部',
+                price: 99,
+                number: 1,
+                pricesd: 99,
+                publishDate: new Date()
+            },
+            {
+                id: 2,
+                bookName: '射雕英雄传',
+                price: 88,
+                number: 1,
+                pricesd: 88,
+                publishDate: new Date()
+            },
+            {
+                id: 3,
+                bookName: '神雕侠侣',
+                price: 79,
+                number: 1,
+                pricesd: 79,
+                publishDate: new Date()
+            }]
+        },
+        methods: {
+            //需要知道点击的是哪一个 所以用到传参
+            substract(book) {
+                book.number--;
+                book.pricesd = book.number * book.price
+            },
+            add(book) {
+                book.number++;
+                book.pricesd = book.number * book.price
+            },
+            deleteBookHandle(index) {
+                //删除功能splice  splice函数的作用: 从指定的index位置删除元素，删除指定个数的元素
+                this.books.splice(index, 1)
+            },
+            addBbooks() {
+                let books = {
+                    id: this.books.length + 1,
+                    bookName: this.names,
+                    price: this.bookprice,
+                    number: this.booknumber,
+                    pricesd: this.bookpricese,
+                    publishDate: this.bookdate,
+                };
+                this.books.push(books)
+                this.names = '',
+                    this.bookprice = '',
+                    this.booknumber = ''
+            }
+        },
+        computed: {
+            totalPrice() {
+                let sum = 0;
+                for (let book of this.books) {
+                    sum = sum + book.price * book.number
+                }
+                return sum
+            }
+        }
+    })
+</script>
+
+</html>

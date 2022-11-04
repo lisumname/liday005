@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../VUEwenjia/vue.js"></script>
+</head>
+<body>
+    <div id="box">
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>图书编号</th>
+                    <th>图书名称</th>
+                    <th>出版时间</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(item,index) in booksName" :key="item.id">
+                    <td>{{item.id}}</td>
+                    <td>{{item.bookName}}</td>
+                    <td>{{item.bookdate | bookdates}}</td>
+                    <!-- index就是我当前点击的作为参数传给形参 -->
+                    <td><a href="#" @click="deletbook(index)">删除</a></td>
+                </tr>
+            </tbody>
+        </table>
+        <p>
+
+        </p>
+        图书名:<input type="text" v-model="book">
+        <p></p>
+        <button @click="addbooks">添加图书</button>
+    </div>
+</body>
+<script src="../VUEwenjia/moment.js"></script>
+<script>
+    //过滤时间格式化
+    Vue.filter('bookdates',function(value){
+        return moment(value).format('YYYY-MM-HH:mm:ss')
+    })
+   const vm= new Vue({
+         el:'#box',
+         data:{
+            book:'',
+            booksName:[{
+                id:1,
+                bookName:'天龙八部',
+                bookdate:new Date()
+            },{
+                id:2,
+                bookName:'射雕侠侣',
+                bookdate:new Date()
+            },{
+                id:3,
+                bookName:'喜剧大王',
+                bookdate:new Date()
+            },]
+         },
+         methods: {
+            //删除功能 需要知道删除的是哪一个 接收传递过来的参数就是当前点击的那一个
+            deletbook(index){
+                this.booksName.splice(index, 1) 
+            },
+            addbooks(){
+                //构造一本书
+                let books={
+                    id:this.booksName.length +1,
+                    bookName:this.book,
+                    bookdate:new Date()
+                }
+                //向数组中添加图书
+                this.booksName.push(books)
+            }
+         },
+    })
+</script>
+</html>

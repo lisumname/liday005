@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../VUEwenjia/vue.js"></script>
+</head>
+<style>
+    .const{
+        background-color: red;
+    }
+</style>
+
+<body>
+    <div id="box">
+        <ul>
+            <li v-for="(item,index) in users" :class="{const: index===constroudn}" @click="end(index)">
+                {{item}}</li>
+        </ul>
+    </div>
+</body>
+<script>
+  const vm=new Vue({
+    el:'#box',
+    data:{
+        users:['小军','小马','小明','小米','小红','小白'],
+        constroudn:0
+    },
+    methods:{
+        end(index){
+            this.constroudn=index
+        }
+    }
+  })
+</script>
+
+</html>

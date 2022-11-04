@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box">
+         <!-- ref可以获取组件的数据 也可以获取标签的内容 -->
+     <p ref="pCongit">我是p</p>
+       获取的p标签的内容:{{message}}
+     <button @click="infobtnp">按钮</button>
+    </div>
+</body>
+
+<script src="../VUEwenjia/vue.js"></script>
+<script>
+    new Vue({
+    el:'#box',
+    data:{
+        message:''
+    },
+    methods: {
+        infobtnp(){
+            // refs可以获取组件的数据 也可以获取标签的内容
+           this.message=this.$refs.pCongit.innerText
+        }
+    },
+    })
+</script>
+</html>

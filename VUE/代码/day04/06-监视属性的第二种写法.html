@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../VUEwenjia/vue.js"></script>
+</head>
+<body>
+    <div id="box">
+        <p>{{name}}</p>
+    </div>
+    <script>
+        const vm=new Vue({
+            el:'#box',
+            data:{
+                name:21,
+            },
+        })
+        //第一个参数依然是监视的属性,但是必须加''号
+        vm.$watch('name',{
+            // immediate:true , //意思就是让handler初始化的时候就调用一下
+            handler(newValue,olValue){
+            console.log('name被修改了新的值是'+newValue,'旧值是'+olValue);
+            if(newValue-olValue<5){
+                alert('天气降温,注意保暖')
+            }else if(newValue-olValue>5){
+                alert('天气变化,注意身体')
+            }
+              
+            }
+        })
+    </script>
+</body>
+</html>

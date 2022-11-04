@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../VUEwenjia/vue.js"></script>
+</head>
+<body>
+    <div id="box">
+        {{10+20}}
+        {{myname,age}}
+    </div>
+</body>
+<script>
+   let sum= new Vue({
+        el:"#box",   //el就是让托管给vue哪个元素
+        data:{         //data里就是写属性的地方
+            myname:'小李', 
+        },
+        methods:{      //methods就是写方法 函数的地方
+            end(){
+
+            }
+        }
+    })
+    sum.myname="tiechui"  //可以直接改变值
+    sum.myname="xiaoming"  //再次赋值就会覆盖原来
+   
+    
+</script>
+</html>

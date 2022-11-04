@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="box">
+        <parent></parent>
+        
+        <hr>
+
+    </div>
+</body>
+<!-- 父组件模块 -->
+<template id="myparent">
+    <div>
+        <h1>父组件</h1>
+        <!-- 父组件中使用子组件  标签写子组件的定义名-->
+        <!-- /**向子组件传递父组件的数据  用动态自定义传递**/ -->
+        <child :parent-info="name" :parent-age="age"></child>
+    </div>
+</template>
+<!-- 子组件模块 -->
+<template id="mychild">
+    <div>
+        <h1>子组件</h1>
+        这个是父组件传递过来的数据:{{parentInfo}}{{parentAge}}
+    </div>
+</template>
+<script src="../VUEwenjia/vue.js"></script>
+<script>
+    //1.定义父组件
+    Vue.component('parent', {
+        template: '#myparent',
+        data() {
+            return {
+                name: '张三',
+                age: 21
+            }
+        },
+    })
+    //1.定义子组件
+    Vue.component('child', {
+        template: '#mychild',
+        props: {
+            //对象形式接收 
+            parentInfo: {
+                type: String
+            },
+            parentAge: {
+                type: Number
+            }
+        }
+    })
+    const vm = new Vue({
+        el: '#box'
+    })
+</script>
+
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../VUEwenjia/vue.js"></script>
+</head>
+<body>
+    <div id="box">
+        <h1>今天天气很{{info}}</h1>
+        <button @click="lets">切换天气</button>
+    </div>
+</body>
+<script>
+    const vm=new Vue({
+        el:'#box',
+        data:{
+         flag:true   
+        },
+        methods: {
+            lets(){
+                this.flag=!this.flag
+            }
+        },
+        computed:{
+            //因为不考虑修改 所有可以直接用简写计算属性
+            info(){
+                  return this.flag ? '炎热':'凉爽'
+            }
+        }
+    })
+</script>
+</html>

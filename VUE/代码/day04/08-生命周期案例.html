@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../VUEwenjia/vue.js"></script>
+</head>
+
+<body>
+    <div id="box">
+        <!-- 需求,让p标签每隔一秒显示或隐藏 -->
+        <!-- 间隔定时器 -->
+        <p v-if="flag">{{message}}</p>
+        <button @click="info">销毁Vue实例</button>
+    </div>
+</body>
+<script>
+    const vm = new Vue({
+        el: '#box',
+        data: {
+            message: 'hellorworld',
+            flag: true,
+        },
+        methods: {
+            info() {
+                this.$destroy()
+            }
+        },
+        created() {
+            //这里必须使用箭头函数 ,因为普通函数的this指向的是定时器这个函数 ,箭头函数没有this,所有会往上一级找
+            // 像Vue身上添加了一个tiemer属性
+            this.tiemer = setInterval(() => {
+                console.log('-----');
+                this.flag = !this.flag
+            }, 1000)
+        },
+        //定义销毁Vue
+        beforeDestroy() {
+            //清除定时器  因为需要指定变量才可以清除定时器
+            clearInterval(this.tiemer)
+        },
+    })
+</script>
+
+</html>

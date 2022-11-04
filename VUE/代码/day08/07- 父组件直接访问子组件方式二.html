@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="box">
+        <child ref="child1"></child>
+
+        <button @click="clickHandle">直接访问子组件</button>
+    </div>
+</body>
+<template id="child">
+    <div>
+        <h1>子组件</h1>
+    </div>
+</template>
+<script src="../VUEwenjia/vue.js"></script>
+<script>
+    //定义子组件
+    Vue.component('child', {
+        template: '#child',
+        data() {
+            return {
+                name: '李四',
+                age: 21
+            }
+        },
+        methods: {
+            info() {
+                console.log('child--info');
+            }
+        },
+    })
+
+
+    new Vue({
+        el: '#box',
+        methods: {
+            clickHandle() {
+                // 方式二： $refs，vue2中了解就可以,vue3中放弃了
+               let insers=this.$refs.child1
+               console.log(insers.name,insers.age);
+               insers.info()  
+            }
+        }
+
+    })
+</script>
+
+</html>
